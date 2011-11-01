@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<dataset>
+    <categories id="1" name="Games" description="Blogs relating to games" position="1" />
+	<blog_entries id="1" category_id="1" postDate="2011-10-20" title="blog one" image="blog.jpg" summary="My blog summary" content="My blog content"/>
+	<blog_entries id="2" category_id="1" postDate="2011-10-30" title="blog two" image="blog.jpg" summary="My blog summary" content="My blog content"/>
+	<blog_entries id="3" category_id="1" postDate="2011-10-10" title="blog three" image="blog.jpg" summary="My blog summary" content="My blog content"/>
+</dataset>

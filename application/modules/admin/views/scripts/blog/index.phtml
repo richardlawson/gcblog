@@ -1,0 +1,104 @@
+<?php $this->headScript()->captureStart() ?>
+	
+	$(function() {
+			
+			$("#flex1").flexigrid(
+				{
+				url: '<?php echo $this->url(array(), 'blog-flexigrid', true)?>',
+				dataType: 'json',
+				colModel : [
+				{display: 'Title', name : 'title', width : 200, sortable : true, align: 'left'},
+				{display: 'Post Date', name : 'postDate', width : 125, sortable : true, align: 'left'},
+				{display: 'Category', name : 'category', width : 125, sortable : true, align: 'left'},
+				{display: 'Image', name : 'image', width : 150, sortable : false, align: 'left'},
+				],
+				buttons : [
+				{name: 'Add', bclass: 'add', onpress: addBlog},
+				{name: 'Edit', bclass: 'edit', onpress: editSelected},
+				{name: 'Delete', bclass: 'delete', onpress: deleteSelected},
+				{separator: true}
+				],
+				sortname: 'postDate',
+				sortorder: 'desc',
+				usepager: true,
+				useRp: true,
+				rp: 10,
+				rpOptions: [5,10,20,50],
+				showTableToggleBtn: false,
+				resizable: false,
+				width: 'auto',
+				height: 275,
+				onSubmit: doCategorySelection,
+				onSuccess: doUrlReset
+				}
+			);
+			
+			var actionInProgress = false;	
+			
+			function addBlog(com,grid){
+				if(actionInProgress){
+					return;
+				}
+				document.location = '<?php echo $this->url(array('id' => 0), 'blog-add', true) ?>';
+			}
+			
+			function editSelected(com, grid){
+				if(actionInProgress){
+					return;
+				}
+				var selectedRows = $('.trSelected',grid);
+				if(selectedRows.length == 0){
+					return;
+				}else if(selectedRows.length > 1){
+					alert('You can only edit one item at a time');
+					return;
+				}else{
+					document.location = '/admin-area/add-blog/id/' + selectedRows[0].id.substr(3);
+				}
+			}
+			
+			function deleteSelected(com, grid){
+				var selectedRows = $('.trSelected',grid);
+				if(selectedRows.length > 0){
+				   if(confirm('Delete ' + selectedRows.length + ' items?')){	
+			            var ids = new Array();
+			        	for(var i = 0; i < selectedRows.length; i++){
+							ids.push(selectedRows[i].id.substr(3));
+						}
+						$('#flex1').flexOptions({url: '/admin-area/delete-blog/ids/' + ids.join(',')});
+						$('#flex1').flexReload();
+					}
+				} else {
+					return false;
+				} 
+	        }  
+			
+			$('#category').change(function(){
+				$('#flex1').flexReload();
+			});
+	});
+	
+	
+	function doCategorySelection(){
+		var categoryId = $('#category').val();
+		$("#flex1").flexOptions({params:[{name: 'categoryId', value: categoryId}]});
+        return true;
+	}
+	
+	function doUrlReset(){
+		$("#flex1").flexOptions({url: '<?php echo $this->url(array(), 'blog-flexigrid', true)?>'});
+	}
+	
+<?php $this->headScript()->captureEnd() ?>
+<div class="column-header">
+	Blog Entries
+</div>
+<div id="categoryFilter" >
+	Category Filter: <select id="category">
+		<option value="0">Show All</option>
+		<?php foreach($this->categories as $category):?>
+			<option value="<?php echo $category->id?>"><?php echo $category->name ?></option>
+		<?php endforeach?>
+	</select>
+</div>
+<table id="flex1"></table>

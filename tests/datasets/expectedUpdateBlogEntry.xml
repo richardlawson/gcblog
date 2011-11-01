@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<dataset>
+    <categories id="1" name="Games" description="Blogs relating to games" position="1" />
+    <categories id="2" name="PHP" description="Blogs relating to php" position="2" />
+	<blog_entries id="1" category_id="1" postDate="2011-10-20" title="blog one" image="blog.jpg" summary="My blog summary" content="My blog content and more"/>
+	<blog_entries id="2" category_id="1" postDate="2011-10-30" title="blog two" image="blog.jpg" summary="My blog summary" content="My blog content"/>
+	<blog_entries id="3" category_id="2" postDate="2011-10-10" title="blog three" image="blog.jpg" summary="some summary info" content="My blog content"/>
+	<blog_entries id="4" category_id="2" postDate="2011-10-30" title="blog four" image="blog.jpg" summary="My blog summary" content="My blog content"/>
+	<blog_entries id="5" category_id="1" postDate="2011-09-02" title="blog five" image="blog.jpg" summary="My blog summary" content="My blog content"/>
+	<blog_entries id="6" category_id="1" postDate="2011-09-10" title="blog six" image="blog.jpg" summary="My blog summary" content="My blog content"/>
+	<blog_entries id="7" category_id="1" postDate="2011-09-10" title="blog seven" image="blog.jpg" summary="My blog summary" content="My blog content"/>
+</dataset>

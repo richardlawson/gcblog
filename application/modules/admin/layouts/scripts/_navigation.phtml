@@ -1,0 +1,16 @@
+<div id="menu">
+	<ul>
+		<li><a href="#" class="menuItemTrigger">Categories</a>
+			<ul>
+				<li><a href="<?php echo $this->url(array(), 'category-list', true)?>" <?php if($this->selectedMenuItem == 1): ?>class="highlighted"<?php endif ?>>View Categories</a></li>
+				<li><a href="<?php echo $this->url(array('id' => 0), 'category-add', true) ?>" <?php if($this->selectedMenuItem == 2): ?>class="highlighted"<?php endif ?>>Add Category</a></li>
+			</ul>
+		</li>
+		<li><a href="#" class="menuItemTrigger">Blogs</a>
+			<ul>
+				<li><a href="<?php echo $this->url(array(), 'blog-list', true)?>" <?php if($this->selectedMenuItem == 3): ?>class="highlighted"<?php endif ?>>View Blogs</a></li>
+				<li><a href="<?php echo $this->url(array('id' => 0), 'blog-add', true) ?>" <?php if($this->selectedMenuItem == 4): ?>class="highlighted"<?php endif ?>>Add Blog</a></li>
+			</ul>
+		</li>
+	</ul>
+</div>

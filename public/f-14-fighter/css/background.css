@@ -1,0 +1,22 @@
+.background1{
+	width:1000px;
+	height:455px;
+	background:url(/f-14-fighter/images/background/clouds.png);
+	position:absolute;
+}
+
+.background2{
+	width:1000px;
+	height:455px;
+	background:url(/f-14-fighter/images/background/clouds-medium.png);
+	position:absolute;
+}
+
+.background3{
+	width:1000px;
+	height:455px;
+	background:url(/f-14-fighter/images/background/clouds-small.png);
+	position:absolute;
+	z-index:500;
+}
+

@@ -1,0 +1,262 @@
+.small-text{
+	font-size:70%;
+}
+
+#gamer-info{
+	width:992px;
+	float:left; 
+	margin-bottom:7px;
+}
+
+#high-score-panel{
+	
+}
+
+#canvas{
+	position:relative;
+	float:left;
+	clear:both;
+	width:990px;
+	height:455px;
+	background:url(/f-14-fighter/images/background/desert.jpg) repeat-x;
+	background-position:top;
+	border:1px solid #000;
+	overflow:hidden;
+}
+
+#preloader{
+	position:absolute;
+	width:990px;
+	height:455px;
+	z-index:3000;
+	background:#333;
+	text-align:center;
+}
+
+#progress-bar-text{
+	position:absolute;
+	left:220px;
+	top:180px;
+	font-size:10px;
+	color:#fff;
+	
+}
+
+#progress-bar-holder{
+	position:absolute;
+	left:220px;
+	top:207px;
+	width:500px;
+	height:1px;
+	overflow:hidden;
+}
+
+#progress-bar{
+	position:absolute;
+	left:-500px;
+	width:500px;
+	height:1px;
+	background:#00cc00;
+	
+}
+
+#intro-screen{
+	position:absolute;
+	width:990px;
+	height:455px;
+	background:url(/f-14-fighter/images/screen/intro.png);
+	z-index:2000;
+	left:0;
+	right:0;
+}
+
+#score-panel{
+	padding-top:10px;
+}
+
+#start-button{
+	position:absolute;
+	left:600px;
+	top:80px;
+	width:90px;
+	color:#000;
+	font-size:16px;
+	font-weight:bold;
+	text-decoration:none;
+	text-align:center;
+	padding-top:30px;
+	padding-bottom:30px;
+}
+
+#start-button:hover{
+	color:#fff;
+}
+
+#scoreboard{
+	background-color: #000;
+	border:1px solid #ccc;
+	font-size:16px;
+	color:#ccc;
+	width:100px;
+	height:30px;
+	position:absolute;
+	bottom:5px;
+	left:5px;
+}
+
+#info-screen{
+	position:absolute;
+	text-align:center;
+	width:500px;
+	left:245px;
+	color:#fff;
+	font-size:30px;
+	z-index:2000;
+	top:70px;
+}
+
+#info-screen a{
+	font-size:20px;
+	color:#fff;
+	text-decoration:none;
+}
+
+#info-screen a:hover{
+	color:#333;
+}
+
+#scoreform .charfield{
+	font-size:25px;
+	height:40px;
+	padding-top:2px;
+	padding-bottom:2px;
+	width:30px;
+	align:center;
+	background:none;
+	border: none;
+	border-bottom: 3px solid #fff;
+	color:#fff;
+	padding-left:10px;
+}
+
+#scoreform .submit{
+	font-size:20px;
+	margin-left:50px;
+	margin-top:15px;
+	width: 130px;
+}
+
+#scoreform label{
+	font-size:18px;
+}
+
+#saving-panel{
+	display:none;
+	position:absolute;
+	color:#000;
+	left:0px;
+	top:0px;
+	width:990px;
+	height:455px;
+	background-color:#000;
+	border:1px solid #000;
+	/* for IE */
+  	filter:alpha(opacity=65);
+  	/* CSS3 standard */
+ 	opacity:0.65;
+	z-index: 2000;
+}
+
+#saving-dialogue{
+	display:none;
+	position:absolute;
+	top: 100px;
+	left: 370px;
+	width:250px;
+	height:90px;
+	padding-top:60px;
+	background: #c5c5c5;
+	border: 1px solid #000;
+	text-align: center;
+	align:center;
+	z-index: 2001;
+}
+
+.high-score-table{
+	width:100%;
+	font-size:18px;
+	text-align:left;
+	margin-top:5px;
+}
+
+.high-score-table th{
+	width:90%;
+	font-size:20px;
+	font-weight:normal;
+	height: 40px;
+	border-bottom: 1px dotted #fff;
+}
+
+#dashboard{
+	font-size:14px;
+	font-family:courier;
+	color:#fff;
+	width:320px;
+	height:30px;
+	position:absolute;
+	top:5px;
+	left:5px;
+}
+
+#health{
+	float:left;
+}
+
+#score{
+	margin-left:50px;
+	float:left;
+}
+
+#mission-panel{
+	position:absolute;
+	font-family:courier;
+	font-size:14px;
+	color:#00f700;
+	left:-272px;
+	bottom:0px;
+	height:160px;
+	width:230px;
+	padding:20px;
+	background-color:#000;
+	border-top:1px solid #000;
+	border-left:1px solid #000;
+	border-right:1px solid #000;
+	/* for IE */
+  	filter:alpha(opacity=65);
+  	/* CSS3 standard */
+ 	opacity:0.65;
+	z-index: 2000;
+}
+
+.explosion{
+	background: url(/f-14-fighter/images/animation/explosion-large.png);
+	position:absolute;
+	width:75px;
+	height:75px;
+}
+
+.ship-hit{
+	background: url(/f-14-fighter/images/animation/explosion.png);
+	position:absolute;
+	width:46px;
+	height:46px;
+	left:85px;
+}
+
+.enemy-hit{
+	background: url(/f-14-fighter/images/animation/explosion.png);
+	position:absolute;
+	width:46px;
+	height:46px;
+	left:5px;
+}

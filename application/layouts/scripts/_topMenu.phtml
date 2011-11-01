@@ -1,0 +1,5 @@
+<ul>
+	<li <?php if($this->menuItem == 1):?>class="active"<?php endif?>><a href="/">HOME</a></li>
+	<li <?php if($this->menuItem == 2):?>class="active"<?php endif?>><a href="<?php echo $this->url(array(), 'about', true)?>">ABOUT</a></li>
+	<li <?php if($this->menuItem == 3):?>class="active"<?php endif?>><a href="<?php echo $this->url(array(), 'contact', true)?>">CONTACT</a></li>
+</ul>	

@@ -1,0 +1,206 @@
+html{
+	height:100%;
+	margin:0;
+	padding:0;
+}
+
+body {
+	height:100%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:80%;
+}
+
+h1{
+	font-weight:100;
+}
+
+img{
+	border:none;
+}
+
+textarea{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:100%;
+}
+
+#wrapper{
+	width:95%;
+	height:100%;
+	margin:0 auto;
+}
+
+.form-wrapper{
+	padding: 1em;
+}
+
+#container{
+	border: 1px solid #BBB;
+	padding:5px;
+	background-color:#DDD;
+	min-width:850px;
+	_width:	800px; /* min-width for IE6 */
+	height:90%;
+}
+
+.column-header{
+	background: url(../images/admin/column-title.jpg) repeat-x;
+	background-color: #298eba;
+	padding:7px;
+	color:#fff;
+	font-weight:bold;
+	border-bottom: 1px solid 333;
+}
+
+.column-content{
+	padding:5px;
+}
+
+#progress-bar{
+	display:none; 
+	background: url(../css/images/bg.gif) repeat-x; 
+	height:20px; 
+	padding-top:5px; 
+	padding-left:5px; 
+	border-bottom:1px solid #ccc; 
+	font-size: 11px;
+}
+
+#categoryFilter{
+	padding:5px; 
+	background:#efefef;
+	font-size:11px;"
+}
+
+/*--------------------------------------------------------------*/
+/* menu */
+
+#menu ul{
+	float: left;
+	margin: 0; 
+  	padding: 0; 
+  	list-style-type: none;
+  	width:100%;
+}
+
+#menu li{
+	float: left;
+	padding-top: 0.6em;
+	padding-bottom: 0.5em;
+	width:100%;
+}
+
+#menu li a{
+	background: url(../images/admin/open.jpg) left 0.25em no-repeat;
+	padding-left: 1.25em;
+	text-decoration:none;
+	color:#888;
+	font-weight:bold;
+}
+
+#menu li a.hide{
+	background: url(../images/admin/close.jpg) left 0.25em no-repeat;
+}
+
+/* step in a level */
+
+#menu li ul{
+	float: left;
+	margin-top: 0.25em;
+	padding-top: 0.5em;
+	width:100%;
+	font-size:12px;
+}
+
+#menu li ul li{
+	float: left;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 0;
+	width:100%;
+}
+
+#menu li ul li a{
+	padding-left:1.7em;
+	text-decoration:none;
+	background: none;
+	color: #3a4b91;
+	font-weight:normal;
+	
+}
+
+#menu li ul li a:hover{
+	text-decoration:underline;
+	
+}
+
+#menu li ul li a.highlighted{
+	color:#f5773a;
+}
+
+/*--------------------------------------------------------------*/
+/* forms */
+
+.form{
+	float: left;
+	background: #F9F9F9;
+	padding-top: 1em;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+	border: 1px solid #ccc;
+	margin-top: 1em;
+	color: #666666;
+}
+
+.zend_form{
+	float: left;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+label{
+	width: 140px;
+}
+
+.highlighted{
+	color: #0099FF;
+}
+
+dl{
+	width:100%;
+	float: left;
+	clear: left;
+	padding-bottom: 0;
+}
+
+dt{
+	width:100%;
+	float: left;
+	clear: left;
+	padding-bottom: 0.5em;
+}
+
+dd{
+	width:100%;
+	float: left;
+	clear: left;
+	padding-left: 0;
+	margin-left: 0;
+	padding-bottom: 1em;
+}
+
+ul.errors{
+	color: #CC0000;
+	padding-top: 0.2em;
+	padding-bottom: 1em;
+	font-size: 85%;
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+ul.errors li{
+	padding-left: 0;
+}
+
+

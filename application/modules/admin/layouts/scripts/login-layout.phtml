@@ -1,0 +1,16 @@
+<?php echo $this->doctype() ?>
+<html lang="en">
+<head>
+  <?php echo $this->headMeta(); ?>
+  <?php echo $this->headTitle(); ?>
+  <?php $this->headLink()->prependStylesheet('/css/admin.css'); ?>
+  <?php $this->headScript()->appendFile('/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9' )); ?>
+  <?php echo $this->headLink(); ?>
+  <?php echo $this->headScript(); ?>
+</head>
+<body>
+<div id="wrapper">
+	<?php echo $this->layout()->content ?>	
+</div>
+</body>
+</html>

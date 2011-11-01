@@ -1,0 +1,22 @@
+<?php $this->headScript()->appendFile('/scripts/innovaeditor.js'); ?>
+<?php $this->headScript()->captureStart() ?>
+	$(function() {
+		$("#postDateAsString").datepicker({dateFormat: 'dd/mm/yy', showOn: 'button', buttonImage: '/images/calendar.gif', buttonImageOnly: true});
+	});
+<?php $this->headScript()->captureEnd() ?>
+<div class="column-header">
+	Add/Edit Blog
+</div>
+<div class="column-content">
+	<div class="form-wrapper">
+		<?php $this->form->setAction($this->url());
+			  echo $this->form;
+		?>
+	</div>
+	<!-- warning boxes -->
+	<div id="content-warning-text" title="Warning : Blog Entry Content" class="warningtext" style="display:none">
+		<p>Please do NOT copy and paste text directly from MS Word (or other word processors) into this wysiwyg editor. Instead, please (1) type text directly into the wysiwyg editor OR (2) copy and paste text from MS notepad.</p>
+		<p>NB On windows machines, MS notepad is found in the accessories folder under program files.</p>
+	</div>
+	<!-- end warning boxes--> 
+</div>

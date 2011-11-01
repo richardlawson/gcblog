@@ -1,0 +1,96 @@
+<?php $this->headMeta()->appendName('keywords', 'games, code, javascript, f-14, fighter, tomcat, facebook'); ?>
+<?php $this->headMeta()->appendName('description', 'JavaScript F-14 Fighter game on facebook.'); ?>
+<?php $this->headTitle()->append('F-14 Fighter On Facebook'); ?>
+ 
+<?php $this->headLink()->appendStylesheet('/f-14-fighter/css/main.css'); ?>
+<?php $this->headLink()->appendStylesheet('/f-14-fighter/css/background.css'); ?>
+<?php $this->headLink()->appendStylesheet('/f-14-fighter/css/sprites.css'); ?>
+
+<?php $this->headScript()->appendFile('/js/jquery/jquery.text-effects.js'); ?>
+<?php $this->headScript()->appendFile('/js/jquery/jquery.alphanumeric.pack.js'); ?>
+<?php $this->headScript()->appendFile('/js/jquery/jquery.autotab-1.1b.js'); ?>
+
+<?php $this->headScript()->appendFile('/f-14-fighter/js/FacebookGameController.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/Canvas.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/Rectangle.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/GameObject.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/MovingGameObject.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/RepeatingBackground.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/Ship.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/Rocket.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/EnemyFactory.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/Enemy.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/EnemyRocket.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/MoveStrategy.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/SimpleMoveLeftStrategy.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/SimpleMoveRightStrategy.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/SimpleUpDownMoveStrategy.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/NoseDiveMoveStrategy.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/SmartMoveStrategy.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/SmartEnemy.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/BossEnemy.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/InnerBoundaryChecker.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/OutterBoundaryChecker.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/BoundaryCleaner.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/SimpleCollection.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/MovingGameObjectCollection.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/EnemyCollection.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/ScoreManager.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/ImagePreLoader.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/CollisionDetector.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/FacebookScreenBuilder.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/CommunicationPopUp.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/Dashboard.js'); ?>
+<?php $this->headScript()->appendFile('/f-14-fighter/js/Util.js'); ?>
+<?php $this->headScript()->captureStart() ?>
+	$(function(){
+		var gameController = new GameController();
+		gameController.init();
+		$("#start-button").click(function(event){
+			event.preventDefault();
+			gameController.startGame();
+			$("#intro-screen").remove();
+		});	
+		
+  });
+<?php $this->headScript()->captureEnd() ?>
+<!-- 
+<div style="width:100%; float:left;background:url(/f-14-fighter/images/screen/tab.jpg);height:35px;margin-bottom:0px;"></div>
+-->
+<div id="gamer-info">
+	<img src="https://graph.facebook.com/<?php echo $this->gamer->facebookId; ?>/picture" class="img-border" align="left" style="margin-right:9px;">
+	Welcome 
+	<?php if(count($this->gamer->scores) > 1):?>
+	back
+	<?php endif ?>
+	<?php echo $this->gamer->name?><br/>
+	<strong>Your highest score:</strong> <span id="high-score-panel"><?php echo $this->gamer->highScore?></span> points 
+</div>
+<br class="floatfix"/>
+<div id="canvas">
+	<div id="preloader">
+		<div id="progress-bar-text">Loading ...</div>
+		<div id="progress-bar-holder">
+			<div id="progress-bar"><!-- --></div>
+		</div>
+	</div>
+	<div id="intro-screen">
+		<div>
+			<a href="" id="start-button">Play</a>
+		</div>
+	</div>
+	<div id="info-screen">
+		<!-- -->
+	</div>
+	<div id="mission-panel">
+		<!-- -->
+	</div>
+	<div id="saving-panel">
+		<!-- -->
+	</div>
+	<div id="saving-dialogue">
+		<img src="/f-14-fighter/images/screen/loader.gif" alt="saving in progress" style="margin-bottom:-4px;">&nbsp;Saving score
+	</div>
+</div>
+<br class="floatfix"/>
+	

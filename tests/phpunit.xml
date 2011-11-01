@@ -1,0 +1,22 @@
+<phpunit bootstrap="./bootstrap.php">
+	<php>
+		<var name="DB_DSN" value="sqlite:C:\www\gcblog\tests\data\test.db" />
+		<var name="DB_DBNAME" value="gcblog" />
+		<var name="DATASET_PATH" value="C:\www\gcblog\tests\datasets" />
+	</php>
+    <testsuite name="Application Test Suite">
+        <directory>./application</directory>
+    </testsuite>
+    <testsuite name="Library Test Suite">
+        <directory>./library</directory>
+    </testsuite>
+    
+    <filter>
+        <!-- If Zend Framework is inside your project's library, uncomment this filter -->
+        <!-- 
+        <whitelist>
+            <directory suffix=".php">../../library/Zend</directory>
+        </whitelist>
+        -->
+    </filter>
+</phpunit>

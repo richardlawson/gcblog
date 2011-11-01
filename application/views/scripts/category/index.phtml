@@ -1,0 +1,35 @@
+<?php $this->headMeta()->appendName('keywords', 'games, code, javascript, php, jquery'); ?>
+<?php $this->headMeta()->appendName('description', $this->escape($this->category->name)); ?>
+<?php $this->headTitle()->append("Games and Code - {$this->escape($this->category->name)}"); ?>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=184834974920273";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<h1><?php echo $this->category->name ?></h1>
+<hr>
+<?php if(count($this->blogPaginator)):?>
+	<?php foreach($this->blogPaginator as $blogEntry):?>
+		<span class="category-block1"><?php echo strtoupper($blogEntry->category->name)?></span>
+		<h1><?php echo $blogEntry->title?></h1>
+		<h4><?php echo $blogEntry->postDate->format('l jS F Y') ?></h4><br/>
+		<div style=" width:100%: float:left">
+			<div style="float:left; margin-top:1px"><a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo 'http://www.gamesandcode.co.uk' . $this->url(array('id' => $blogEntry->id, 'urlFriendlyName' => $this->prepareUrlText($blogEntry->title)), 'blog', true);?>" data-count="horizontal">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script></div>
+			<div style="float:left;" class="fb-like" data-href="<?php echo 'http://www.gamesandcode.co.uk' . $this->url(array('id' => $blogEntry->id, 'urlFriendlyName' => $this->prepareUrlText($blogEntry->title)), 'blog', true);?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+		</div>
+		<br class="floatfix">
+		<img src="/images/blog-images/<?php echo $blogEntry->id?>/thumbnails/<?php echo $blogEntry->image?>" alt="<?php echo $blogEntry->title?>" align="left" style="margin-right:20px;"> 
+		<?php echo nl2br($blogEntry->summary)?>
+		<br><br><a href="<?php echo $this->url(array('id' => $blogEntry->id, 'urlFriendlyName' => $this->prepareUrlText($blogEntry->title)), 'blog', true); ?>" class="more">READ MORE</a>&nbsp;
+		<br class="floatfix"><hr>
+	<?php endforeach ?>
+<?php else:?>
+	There are no entries for this category at the moment, but some will be posted shortly.
+<?php endif?>
+<?php echo $this->paginationControl($this->blogPaginator,
+										'Sliding',
+										'search-pagination.phtml'); ?>
+

@@ -1,0 +1,220 @@
+<?php $this->headScript()->captureStart() ?>
+	function FlexigridOrderArrowRenderer(tableId){
+		this.tableId = tableId;
+		
+		this.doRender = function(){
+			this.renderUpArrows();
+			this.renderDownArrows();
+		}
+		
+		this.renderUpArrows = function(){
+			this.hideUpArrowForFirstRowAndAlign();
+			this.showUpArrowsForAllRowsExceptFirstAndAlign();
+		}
+		
+		this.hideUpArrowForFirstRowAndAlign = function(){
+			$(this.tableId + " tr:first .reOrderUp").hide();
+			$(this.tableId + " tr:first .reOrderDown").css('margin-left', '8px');
+		}
+		
+		this.showUpArrowsForAllRowsExceptFirstAndAlign = function(){
+			$(this.tableId + " tr:not(:first) .reOrderDown").css('margin-left', '0');
+			$(this.tableId + " tr:not(:first) .reOrderUp").show();
+		}
+		
+		this.renderDownArrows = function(){
+			this.hideDownArrowForLastRow();
+			this.showDownArrowsForAllRowsExceptLast();
+		}
+		
+		this.showDownArrowsForAllRowsExceptLast = function(){
+			$(this.tableId + " tr:not(:last) .reOrderDown").show();
+		}
+		
+		this.hideDownArrowForLastRow = function(){
+			$(this.tableId + " tr:last .reOrderDown").hide();
+		}
+		
+	}
+	
+	$(function(){
+		$('.flexme').flexigrid({
+			height:'auto',
+			buttons : [ {
+				name : 'Add',
+				bclass : 'add',
+				onpress : addCategory
+			}, {
+				name : 'Edit',
+				bclass : 'edit',
+				onpress : editSelected
+			}, {
+				name : 'Delete',
+				bclass : 'delete',
+				onpress : deleteSelected
+			}, {
+				separator : true
+			} ]
+		});
+		
+		var orderRenderer = new FlexigridOrderArrowRenderer('.flexme');
+		var actionInProgress = false;	
+		
+		function addCategory(com,grid){
+			if(actionInProgress){
+					return;
+			}
+			document.location = '<?php echo $this->url(array('id' => 0), 'category-add', true) ?>';
+		}
+		
+		function editSelected(com, grid){
+			if(actionInProgress){
+				return;
+			}
+			var selectedRows = $('.trSelected',grid);
+			if(selectedRows.length == 0){
+				return;
+			}else if(selectedRows.length > 1){
+				alert('You can only edit one item at a time');
+				return;
+			}else{
+				document.location = '/admin-area/add-category/id/' + selectedRows[0].id.substr(2);
+			}
+		}
+		
+		function deleteSelected(com, grid){
+			if(actionInProgress){
+				return;
+			}
+			var selectedRows = $('.trSelected',grid);
+			if(selectedRows.length > 0){
+			   if(confirm('Delete ' + selectedRows.length + ' items?')){	
+			   		disableTable();
+		            var ids = new Array();
+		        	for(var i = 0; i < selectedRows.length; i++){
+						ids.push(selectedRows[i].id.substr(2));
+					}
+					$.post(
+		    			'<?php echo $this->url(array(), 'category-delete', true)?>', 
+		    			{'ids[]': ids},
+		    			function(data){
+		    				selectedRows.remove();
+							postProcessTable();
+		    			}
+		    			, 'json'
+		    		);
+				}
+			} else {
+				return false;
+			} 
+        }  
+        
+        $(".reOrderUp").click(function(event){
+			event.preventDefault();
+			if(actionInProgress){
+				return;
+			}
+			disableTable();
+			var selectedRow = $(this).parent().parent().parent();
+			var id = selectedRow.attr('id').substr(2);
+			$.post(
+		    	'<?php echo $this->url(array(), 'category-reorder', true)?>', 
+		    	{reorderType: 0, id: id},
+		    	function(data){
+					selectedRow.prev().before(selectedRow);
+					postProcessTable();
+		    	}
+		    	, 'json'
+		    );
+		});
+		
+		$(".reOrderDown").click(function(event){
+			event.preventDefault();
+			if(actionInProgress){
+				return;
+			}
+			disableTable();
+			var selectedRow = $(this).parent().parent().parent();
+			var id = selectedRow.attr('id').substr(2);
+			$.post(
+		    	'<?php echo $this->url(array(), 'category-reorder', true)?>', 
+		    	{reorderType: 1, id: id},
+		    	function(data){
+					selectedRow.next().after(selectedRow);
+					postProcessTable();
+		    	}
+		    	, 'json'
+		    );
+		});
+		
+		function postProcessTable(){
+			orderRenderer.doRender();
+			$('tbody tr').fadeTo(0, 1);
+			$('tbody tr').removeClass('trSelected');
+			$('tbody tr:odd').addClass('erow');	
+			$('tbody tr:even').removeClass('erow');	
+			$('tr').removeClass('trSelected');
+			$('#progress-bar').hide();
+			actionInProgress = false;	
+		}
+			
+		function disableTable(){
+			actionInProgress = true;
+			$('#progress-bar').show();
+			$('tbody tr').fadeTo(0, 0.4);
+		}
+		
+		postProcessTable();  
+		
+		 $(".flexme").contextMenu({
+        	menu: 'myMenu'
+		 });
+		
+	});
+	
+<?php $this->headScript()->captureEnd() ?>
+<div class="column-header">
+	Categories
+</div>
+<table class="flexme">
+	<thead>
+	<tr>
+		<th width="200">Name</th>
+		<th width="300">Description</th>
+		<th width="100">Order</th>
+	</tr>
+	</thead>
+	<tbody>
+	<?php 
+	foreach($this->categories as $category):?>
+	<tr id="tr<?php echo $category->id ?>">
+		<td><?php echo $category->name ?></td>
+		<td><?php echo $category->description ?></td>
+		<td><a href="#" class="reOrderUp"><img src="/css/images/up.gif"></a>&nbsp;&nbsp;<a href="#" class="reOrderDown"><img src="/css/images/down.gif" ></a></td>
+	</tr>
+	<?php endforeach ?>
+	</tbody>
+</table>
+<div id="progress-bar">
+	<img alt="loading" src="/css/images/load.gif" style="margin-bottom:-3px;">&nbsp;&nbsp;Sending data to server
+</div>
+<ul id="myMenu" class="contextMenu">
+    <li class="edit">
+        <a href="#edit">Edit</a>
+    </li>
+    <li class="cut separator">
+        <a href="#cut">Cut</a>
+    </li>
+    <li class="copy">
+        <a href="#copy">Copy</a>
+    </li>
+    <li class="paste">
+        <a href="#paste">Paste</a>
+    </li>
+    <li class="delete">
+        <a href="#delete">Delete</a>
+    </li>
+    <li class="quit separator">
+        <a href="#quit">Quit</a>
+    </li>
+</ul>

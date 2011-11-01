@@ -1,0 +1,42 @@
+<?php $this->headMeta()->appendName('keywords', 'games, code, javascript, php, jquery'); ?>
+<?php $this->headMeta()->appendName('description', 'Games and Code: features javascript games and code developed by Richard Lawson.'); ?>
+<?php $this->headTitle()->append('Games and Code - Home'); ?>
+<div class="slider-wrapper theme-default">
+	<div class="ribbon"></div>
+    <div id="slider" class="nivoSlider">
+    	<img src="/images/nivo-slider/f-14-fighter.jpg" alt="" title="F-14 Fighter: shoot down those pesky Germans." />
+    	<img src="/images/nivo-slider/control-panel.jpg" alt="" title="My new admin panel makes good use of AJAX to improve usability." />
+    	<img src="/images/nivo-slider/f-14-fighter-facebook.jpg" alt="" title="#facebook-caption" />
+		<img src="/images/nivo-slider/doctrine.jpg" alt="" title="Doctrine: used for DB stuff on this blog." />
+	</div>
+	<div id="facebook-caption" class="nivo-html-caption">
+		F-14 Fighter is now on Facebook. <a href="http://apps.facebook.com/tomcat-fighter" target="_blank">Click here</a> to check it out.
+	</div>
+</div>
+<br><br>
+<div class="headline">LATEST BLOG ENTRIES</div>
+<br>
+<div class="home-features">
+	<?php $i = 1?>
+	<?php foreach($this->blogEntries as $blogEntry):?>
+		<?php if($i == 1):?>
+			<div class="home-feature-left">
+		<?php elseif($i == 2):?>
+			<div class="home-feature-middle">
+		<?php elseif($i == 3):?>
+			<div class="home-feature-right">
+		<?php endif?>	
+			<?php if($blogEntry->image != ""):?>
+				<img src="/images/blog-images/<?php echo $blogEntry->id?>/thumbnails/<?php echo $blogEntry->image?>" alt="<?php echo $blogEntry->title?>"><br/>
+			<?php else:?>
+				<img src="/images/gq-watches-baume-et-mercier-mens-hampton.jpg2 alt="<?php echo $blogEntry->title?>">
+			<?php endif?>
+			<div class="category-block<?php echo $i?>"><?php echo strtoupper($blogEntry->category->name)?></div>
+			<h1><?php echo $blogEntry->title ?></h1>
+			<?php echo $this->summaryText($blogEntry->summary, 130) ?>
+			<br><br><a href="<?php echo $this->url(array('id' => $blogEntry->id, 'urlFriendlyName' => $this->prepareUrlText($blogEntry->title)), 'blog', true); ?>" class="more">READ MORE</a>
+		</div>
+		<?php $i++; ?>
+	<?php endforeach ?>
+</div>
+

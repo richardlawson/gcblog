@@ -1,0 +1,6 @@
+<?php $this->headScript()->captureStart() ?>
+	$(function(){
+	   window.top.location.href = "<?php echo $this->loginUrl; ?>";
+  	});
+<?php $this->headScript()->captureEnd() ?>
+<!-- You need to log in to play this game: &nbsp;<a href="<?php echo $this->loginUrl; ?>"><img src="/f-14-fighter/images/screen/login.gif" alt="login" style="margin-bottom: -4px"></a> --> 

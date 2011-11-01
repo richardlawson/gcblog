@@ -1,0 +1,23 @@
+<?php $this->headMeta()->appendName('keywords', 'games, code, javascript, php, jquery'); ?>
+<?php $this->headMeta()->appendName('description', $this->escape($this->blogEntry->summary)); ?>
+<?php $this->headTitle()->append('Games and Code - Blog'); ?>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=184834974920273";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div id="content-text">
+	<span class="category-block1"><?php echo strtoupper($this->blogEntry->category->name)?></span>
+	<br class="floatfix">
+	<h1><?php echo $this->blogEntry->title?></h1>
+	<h4><?php echo $this->blogEntry->postDate->format('l jS F Y') ?></h4><br>
+	<?php echo $this->blogEntry->content ?>
+	<br><br>
+	<div class="float:left; width:100%;">
+		<div style="float:left; margin-top:1px"><a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo 'http://www.gamesandcode.co.uk' . $this->url()?>" data-count="horizontal">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script></div>
+		<div style="float:left" class="fb-like" data-href="<?php echo 'http://www.gamesandcode.co.uk' . $this->url()?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+	</div>
+</div>

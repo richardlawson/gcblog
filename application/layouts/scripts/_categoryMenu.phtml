@@ -1,0 +1,6 @@
+<ul class="category-menu">
+	<?php foreach($this->categories as $category):?>
+		<li><a href="<?php echo $this->url(array('id' => $category->id, 'urlFriendlyName' => $this->prepareUrlText($category->name)), 'category' , true)?>"><?php echo $category->name ?> (<?php echo count($category->blogEntries) ?>)</a></li>
+	<?php endforeach ?>
+</ul>
+

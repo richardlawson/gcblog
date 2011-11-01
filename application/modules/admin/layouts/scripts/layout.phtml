@@ -1,0 +1,53 @@
+<?php echo $this->doctype() ?>
+<html lang="en">
+<head>
+  <?php echo $this->headMeta(); ?>
+  <?php echo $this->headTitle(); ?>
+  <?php $this->headLink()->prependStylesheet('/css/admin.css'); ?>
+  <?php $this->headLink()->prependStylesheet('/css/jquery.layout.css'); ?>
+  <?php $this->headLink()->prependStylesheet('/css/flexigrid.css'); ?>
+  <?php $this->headLink()->prependStylesheet('/css/flexigrid.pack.css'); ?>
+  <?php $this->headLink()->prependStylesheet('/css/jquery.contextMenu.css'); ?>
+  <?php $this->headLink()->prependStylesheet('/css/themes/ui-lightness/jquery-ui-1.8.16.custom.css'); ?>
+  <?php $this->headScript()->prependFile('/js/jquery/helptext.js'); ?>
+  <?php $this->headScript()->prependFile('/js/jquery/warningtext.js'); ?>
+  <?php $this->headScript()->prependFile('/js/jquery/jquery.flexigrid.js'); ?>
+  <?php $this->headScript()->prependFile('/js/jquery/jquery.flexigrid.pack.js'); ?>
+  <?php $this->headScript()->prependFile('/js/jquery/jquery.layout.js'); ?>
+  <?php $this->headScript()->prependFile('/js/jquery/jquery.contextMenu.js'); ?>
+  <?php $this->headScript()->prependFile('/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9' )); ?>
+   <?php $this->headScript()->prependFile('/js/jquery/jquery-ui-1.8.16.custom.min.js'); ?>
+     <?php $this->headScript()->prependFile('/js/jquery/jquery.ui.all.js'); ?>
+  <?php $this->headScript()->prependFile('/js/jquery/jquery-1.6.2.js'); ?>
+  <?php echo $this->headLink(); ?>
+  <?php echo $this->headScript(); ?>
+  <script>
+  	$(function(){
+  		$('#container').layout();
+  		$('.menuItemTrigger').click(function(event){
+      		event.preventDefault();
+  			$(this).toggleClass('hide');
+  			$(this).next().slideToggle('slow');
+      	});
+  	  	
+  	});
+  </script>
+</head>
+<body>
+<div id="wrapper">
+	<div id="container">
+		<div class="pane ui-layout-center">
+			<?php echo $this->layout()->content ?>
+		</div>
+		<div class="pane ui-layout-west">
+			<div class="column-header">
+				Navigation
+			</div>
+			<div class="column-content">
+				<?php echo $this->render('_navigation.phtml') ?>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

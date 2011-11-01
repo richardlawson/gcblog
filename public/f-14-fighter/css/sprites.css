@@ -1,0 +1,42 @@
+.ship{
+	background: url(/f-14-fighter/images/sprites/f-14-small.png);
+	position:absolute;
+	float:left;
+	width:149px;
+	height:46px;
+}
+
+.enemy{
+	background: url(/f-14-fighter/images/sprites/enemy.png);
+	position:absolute;
+	width:140px;
+	height:52px;
+}
+
+.smartEnemy{
+	background: url(/f-14-fighter/images/sprites/fighter.png);
+	position:absolute;
+	width:145px;
+	height:46px;
+}
+
+.bossEnemy{
+	background: url(/f-14-fighter/images/sprites/boss.png);
+	position:absolute;
+	width:187px;
+	height:46px;
+}
+
+.rocket{
+	position:absolute;
+	width:4px;
+	height:4px;
+	background-color:#333;
+}
+
+.enemyRocket{
+	position:absolute;
+	width:4px;
+	height:4px;
+	background-color:#896778;
+}

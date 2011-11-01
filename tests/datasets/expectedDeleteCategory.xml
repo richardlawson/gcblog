@@ -1,0 +1,5 @@
+<?xml version="1.0" ?>
+<dataset>
+    <categories id="1" name="Games" description="Blogs relating to games" position="1" />
+    <categories id="2" name="PHP" description="Blogs relating to php" position="2" />
+</dataset>
