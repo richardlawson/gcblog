@@ -79,7 +79,7 @@ textarea{
 #categoryFilter{
 	padding:5px; 
 	background:#efefef;
-	font-size:11px;"
+	font-size:11px;
 }
 
 /*--------------------------------------------------------------*/
@@ -162,6 +162,7 @@ textarea{
 	margin-top: 1em;
 	color: #666666;
 }
+
 
 .zend_form{
 	float: left;

@@ -51,7 +51,7 @@ class Application_Service_Authentication
 	public function getAuthAdapter($values){
 		if(is_null($this->_authAdapter)){
 			$authAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_Table_Abstract::getDefaultAdapter());
-		 	var_dump(Zend_Db_Table_Abstract::getDefaultAdapter());
+		 	Zend_Db_Table_Abstract::getDefaultAdapter();
 			$authAdapter
 		  		->setTableName('users')
 		    	->setIdentityColumn('username')
