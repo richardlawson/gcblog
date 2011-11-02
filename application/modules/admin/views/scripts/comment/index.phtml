@@ -1,0 +1,99 @@
+<?php $this->headScript()->captureStart() ?>
+	
+	$(function(){
+		$('.flexme').flexigrid({
+			height:'auto',
+			buttons : [ {
+				name : 'Delete',
+				bclass : 'delete',
+				onpress : deleteSelected
+			}, {
+				separator : true
+			} ]
+		});
+		
+		var actionInProgress = false;	
+		
+		function deleteSelected(com, grid){
+			if(actionInProgress){
+				return;
+			}
+			var selectedRows = $('.trSelected',grid);
+			if(selectedRows.length > 0){
+			   if(confirm('Delete ' + selectedRows.length + ' items?')){	
+			   		disableTable();
+		            var ids = new Array();
+		        	for(var i = 0; i < selectedRows.length; i++){
+						ids.push(selectedRows[i].id.substr(2));
+					}
+					$.post(
+		    			'<?php echo $this->url(array(), 'comment-delete', true)?>', 
+		    			{'ids[]': ids},
+		    			function(data){
+		    				selectedRows.remove();
+							postProcessTable();
+		    			}
+		    			, 'json'
+		    		);
+				}
+			} else {
+				return false;
+			} 
+        }  
+		
+		function postProcessTable(){
+			$('tbody tr').fadeTo(0, 1);
+			$('tbody tr').removeClass('trSelected');
+			$('tbody tr:odd').addClass('erow');	
+			$('tbody tr:even').removeClass('erow');	
+			$('tr').removeClass('trSelected');
+			$('#progress-bar').hide();
+			actionInProgress = false;	
+		}
+			
+		function disableTable(){
+			actionInProgress = true;
+			$('#progress-bar').show();
+			$('tbody tr').fadeTo(0, 0.4);
+		}
+		
+		postProcessTable();  
+		
+		 $(".flexme").contextMenu({
+        	menu: 'myMenu'
+		 });
+		
+	});
+	
+<?php $this->headScript()->captureEnd() ?>
+<div class="column-header">
+	Comments for blog titled: '<?php echo $this->blogEntry->title ?>'
+</div>
+<table class="flexme">
+	<thead>
+	<tr>
+		<th width="125">Name</th>
+		<th width="175">Email</th>
+		<th width="225">Comment</th>
+		<th width="75">Date</th>
+	</tr>
+	</thead>
+	<tbody>
+	<?php 
+	foreach($this->blogEntry->comments as $comment):?>
+	<tr id="tr<?php echo $comment->id ?>">
+		<td><?php echo $comment->name ?></td>
+		<td><?php echo $comment->email ?></td>
+		<td><?php echo $comment->content ?></td>
+		<td><?php echo $comment->postDateAsString ?></td>
+	</tr>
+	<?php endforeach ?>
+	</tbody>
+</table>
+<div id="progress-bar">
+	<img alt="loading" src="/css/images/load.gif" style="margin-bottom:-3px;">&nbsp;&nbsp;Sending data to server
+</div>
+<br/>
+<div class="form-wrapper">
+	<a href="<?php echo $this->url(array(), 'blog-list', true)?>" class="arrow">Return to blogs</a>
+</div>
