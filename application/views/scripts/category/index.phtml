@@ -9,7 +9,7 @@
   js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=184834974920273";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<h1><?php echo $this->category->name ?></h1>
+<h1 class="alt"><?php echo $this->category->name ?></h1>
 <hr>
 <?php if(count($this->blogPaginator)):?>
 	<?php foreach($this->blogPaginator as $blogEntry):?>

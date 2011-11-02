@@ -157,6 +157,12 @@ class BlogEntryTest extends \EntityCase{
 		$this->assertEquals(1, count($this->_category->blogEntries));
 	}
 	
+	public function testAddComment(){
+		$comment = new Comment();
+		$this->_blogEntry->addComment($comment);
+		$this->assertEquals(1, count($this->_blogEntry->getComments()));
+	}
+	
 	public function testFindBlogEntry(){
 		$blogEntry = $this->_em->find('GC\Entity\BlogEntry', 1);
 		$this->assertEquals('1', $blogEntry->id);
@@ -179,6 +185,5 @@ class BlogEntryTest extends \EntityCase{
         $expectedTable = $this->createFlatXmlDataSet($GLOBALS['DATASET_PATH'] .'/expectedBlogEntry.xml')->getTable("blog_entries");
         $this->assertTablesEqual($expectedTable, $queryTable);
 	}
-	
 	
 }

@@ -144,7 +144,7 @@ hr.alt {color: #222; background-color: #222; border: 1px solid #888; border-styl
 	clear:both;
 }
 
-#content{
+#content-main{
 	margin: 0 auto;
 	width:978px;
 	text-align:left;
@@ -196,11 +196,24 @@ hr.alt {color: #222; background-color: #222; border: 1px solid #888; border-styl
 	border-bottom: 1px #ccc dotted;
 }
 
-#content h1{
+#content-main h1{
 	font-weight:100;
 }
 
-#content h4{
+#content-main h1.alt{
+	font-weight:100;
+	font-size:275%;
+	font-family: Arial, Helvetica, sans-serif;
+	color:#666;
+}
+
+#content-main h2{
+	font-weight:100;
+	margin-bottom:0.25em;
+	
+}
+
+#content-main h4{
 	color:#a42929;
 	font-weight:100;
 	padding:0;
@@ -579,3 +592,126 @@ hr.alt {color: #222; background-color: #222; border: 1px solid #888; border-styl
     width:586px; /* Make sure your images are the same size */
     height:350px; /* Make sure your images are the same size */
 }
+/*--------------------------------------------------------------*/
+/* comments */
+
+.comment{
+	line-height:1.25em;
+	float: left;
+	width:566px;
+	background: #efefef;
+	padding-top: 0.75em;
+	padding-bottom: 0.75em;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 1em;
+	color: #000;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom:0;
+}
+
+.comment-content{
+	width:97%;
+	background: #fff;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	float:left;
+	font-size:70%;
+}
+
+.comment-info{
+	line-height:0.6em;
+	margin:0;
+	padding:0;
+	width:100%;
+	float:left;
+	font-size:65%;
+}
+
+/*--------------------------------------------------------------*/
+/* comment form */
+
+.form{
+	float: left;
+	width:95%;
+	background: #efefef;
+	padding-top: 1em;
+	padding-left: 2.5%;
+	padding-right: 2.5%;
+	margin-top: 1em;
+	color: #444;
+	font-size:65%;
+}
+
+.zend_form{
+	float: left;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.zend_form input{
+	height:25px;
+	width:550px;
+	border: 1px solid #ccc;
+}
+
+.zend_form #submit{
+	width:133px;
+	height:26px;
+	border:none;
+}
+
+.zend_form textarea{
+	width:550px;
+	border: 1px solid #ccc;
+}
+
+
+label{
+	width: 140px;
+}
+
+.highlighted{
+	color: #777;
+}
+
+dl{
+	width:100%;
+	float: left;
+	clear: left;
+	padding-bottom: 0;
+}
+
+dt{
+	width:100%;
+	float: left;
+	clear: left;
+	padding-bottom: 0.25em;
+}
+
+dd{
+	width:100%;
+	float: left;
+	clear: left;
+	padding-left: 0;
+	margin-left: 0;
+	padding-bottom: 0.5em;
+}
+
+ul.errors{
+	color: #CC0000;
+	padding-top: 0.2em;
+	padding-bottom: 0.25em;
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+ul.errors li{
+	padding-left: 0;
+}
+
+

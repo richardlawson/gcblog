@@ -15,9 +15,22 @@
 	<h1><?php echo $this->blogEntry->title?></h1>
 	<h4><?php echo $this->blogEntry->postDate->format('l jS F Y') ?></h4><br>
 	<?php echo $this->blogEntry->content ?>
-	<br><br>
-	<div class="float:left; width:100%;">
+	<br><hr>
+	<div style="float:left; width:100%; margin-bottom:7px;">
 		<div style="float:left; margin-top:1px"><a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo 'http://www.gamesandcode.co.uk' . $this->url()?>" data-count="horizontal">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script></div>
 		<div style="float:left" class="fb-like" data-href="<?php echo 'http://www.gamesandcode.co.uk' . $this->url()?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 	</div>
+	<h2>Comments (<?php echo count($this->blogEntry->comments) ?>)</h2>
+	<?php foreach($this->blogEntry->comments as $comment):?>
+		<div class="comment">
+			<div class="comment-content"><?php echo $comment->content?></div>
+			<div class="comment-info"><img src="/images/comment-bottom.gif" alt=""><br/><br/><br/><strong><?php echo $comment->name?></strong>, <?php echo $comment->postDate->format('l jS F Y')?></div>
+		</div>
+	<?php endforeach?>
+	<div class="form" id="comments">
+	<?php $this->form->setAction($this->url() . '#comments');
+			  echo $this->form;
+	?>
+	</div>
+	<br class="floatfix">
 </div>

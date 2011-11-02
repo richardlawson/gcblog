@@ -10,6 +10,17 @@ body {
 	font-size:80%;
 }
 
+a.arrow{
+	background: url(../images/arrow-alt.gif) 0 0.25em no-repeat;
+	color: #3a4b91;
+	text-decoration:none;
+	padding-left:1em;
+}
+
+a.arrow:hover{
+	text-decoration:underline;
+}
+
 h1{
 	font-weight:100;
 }
@@ -136,6 +147,7 @@ textarea{
 #menu li ul li a.highlighted{
 	color:#f5773a;
 }
+
 
 /*--------------------------------------------------------------*/
 /* forms */

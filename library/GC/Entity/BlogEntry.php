@@ -43,8 +43,16 @@ class BlogEntry extends EntityBase{
      */
 	private $category;
 	
+	/**
+     * @OneToMany(targetEntity="Comment", mappedBy="blogEntry")
+     * @OrderBy({"id" = "DESC"})
+     * @var Comment[]
+     */
+	private $comments = null;
+	
 	public function __construct(array $options = null){
 		$this->postDate = new \DateTime();
+		$this->comments = new ArrayCollection();
 		parent::__construct($options);
     }
 	
@@ -112,6 +120,14 @@ class BlogEntry extends EntityBase{
 	
 	public function getCategory(){
 		return $this->category;
+	}
+	
+	public function addComment(Comment $comment){
+		$this->comments[] = $comment;
+	}
+	
+	public function getComments(){
+		return $this->comments;
 	}
 	
 	public function toArray(){

@@ -8,9 +8,10 @@
 				dataType: 'json',
 				colModel : [
 				{display: 'Title', name : 'title', width : 200, sortable : true, align: 'left'},
-				{display: 'Post Date', name : 'postDate', width : 125, sortable : true, align: 'left'},
-				{display: 'Category', name : 'category', width : 125, sortable : true, align: 'left'},
+				{display: 'Post Date', name : 'postDate', width : 100, sortable : true, align: 'left'},
+				{display: 'Category', name : 'category', width : 100, sortable : true, align: 'left'},
 				{display: 'Image', name : 'image', width : 150, sortable : false, align: 'left'},
+				{display: 'Comments', name : 'comments', width : 100, sortable : false, align: 'left'},
 				],
 				buttons : [
 				{name: 'Add', bclass: 'add', onpress: addBlog},
@@ -76,6 +77,7 @@
 			$('#category').change(function(){
 				$('#flex1').flexReload();
 			});
+			
 	});
 	
 	
@@ -87,6 +89,20 @@
 	
 	function doUrlReset(){
 		$("#flex1").flexOptions({url: '<?php echo $this->url(array(), 'blog-flexigrid', true)?>'});
+		$("#flex1 tr").contextMenu({
+			menu: 'blogEntryMenu'
+			},
+			function(action, el, pos) {
+				if(action == 'add'){
+					document.location = '/admin-area/add-blog/id/0';
+				}else if(action =='edit'){
+					document.location = '/admin-area/add-blog/id/' + $(el).attr('id').substr(3);
+				}else if(action == 'comments'){
+					document.location = '/admin-area/comments/id/' + $(el).attr('id').substr(3);
+				}
+		
+			}
+		);
 	}
 	
 <?php $this->headScript()->captureEnd() ?>

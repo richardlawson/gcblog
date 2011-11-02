@@ -8,6 +8,8 @@
 	padding: 0px;
 	margin: 0px;
 	display: none;
+	padding-top:0.5em;
+	padding-bottom:0.5em;
 }
 
 .contextMenu LI {
@@ -26,6 +28,7 @@
 	background-repeat: no-repeat;
 	outline: none;
 	padding: 1px 5px;
+	padding-bottom:0.5em;
 	padding-left: 28px;
 }
 
@@ -54,7 +57,9 @@
 	classes to the respective LI element(s)
 */
 
-.contextMenu LI.edit A { background-image: url(images/page_white_edit.png); }
+.contextMenu LI.edit A { background-image: url(images/edit.png); }
+.contextMenu LI.add A { background-image: url(images/add.png); }
+.contextMenu LI.comments A { background-image: url(images/comment.png); }
 .contextMenu LI.cut A { background-image: url(images/cut.png); }
 .contextMenu LI.copy A { background-image: url(images/page_white_copy.png); }
 .contextMenu LI.paste A { background-image: url(images/page_white_paste.png); }

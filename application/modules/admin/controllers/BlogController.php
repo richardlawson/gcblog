@@ -63,7 +63,7 @@ class Admin_BlogController extends Zend_Controller_Action
 		$data['total'] = $noBlogs;
     	foreach($blogs as $blogEntry){
 			$data['rows'][] = array('id' => $blogEntry->id,
-				'cell' => array($blogEntry->title, $blogEntry->postDateAsString, $blogEntry->category->name, $blogEntry->image)
+				'cell' => array($blogEntry->title, $blogEntry->postDateAsString, $blogEntry->category->name, $blogEntry->image, "<a href=\"comments/id/{$blogEntry->id}\" style=\"text-decoration:none;color:#000\"><img src=\"/css/images/comment.png\" alt=\"\" style=\"margin-bottom:-2px;\">&nbsp;&nbsp;View</a>" )
 			);
 		}
 		return $data;

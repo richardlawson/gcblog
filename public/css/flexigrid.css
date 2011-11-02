@@ -634,6 +634,10 @@ div.pGroup {
 	background: url(images/close.png) no-repeat center left;
 }
 
+.flexigrid div.fbutton .comments {
+	background: url(images/comment.png) no-repeat center left;
+}
+
 .flexigrid div.fbutton .load {
 	background: url(images/load.png) no-repeat center left;
 }

@@ -166,9 +166,18 @@
 		
 		postProcessTable();  
 		
-		 $(".flexme").contextMenu({
-        	menu: 'myMenu'
-		 });
+		 $(".flexme tr").contextMenu({
+				menu: 'categoryMenu'
+			},
+			function(action, el, pos) {
+				if(action == 'add'){
+					document.location = '/admin-area/add-category/id/0';
+				}else if(action =='edit'){
+					document.location = '/admin-area/add-category/id/' + $(el).attr('id').substr(2);
+				}
+		
+			}
+		);
 		
 	});
 	
@@ -198,23 +207,3 @@
 <div id="progress-bar">
 	<img alt="loading" src="/css/images/load.gif" style="margin-bottom:-3px;">&nbsp;&nbsp;Sending data to server
 </div>
-<ul id="myMenu" class="contextMenu">
-    <li class="edit">
-        <a href="#edit">Edit</a>
-    </li>
-    <li class="cut separator">
-        <a href="#cut">Cut</a>
-    </li>
-    <li class="copy">
-        <a href="#copy">Copy</a>
-    </li>
-    <li class="paste">
-        <a href="#paste">Paste</a>
-    </li>
-    <li class="delete">
-        <a href="#delete">Delete</a>
-    </li>
-    <li class="quit separator">
-        <a href="#quit">Quit</a>
-    </li>
-</ul>

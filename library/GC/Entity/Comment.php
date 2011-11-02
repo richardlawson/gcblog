@@ -10,9 +10,9 @@ class Comment extends EntityBase{
 	private $id;
 	
 	/**
-	 * @Column(type="datetime", nullable=false)
+	 * @Column(type="date", nullable=false)
 	 */
-	private $postedDate;
+	private $postDate;
 	
 	/**
 	 * @Column(type="string", length=255, nullable=false)
@@ -20,9 +20,20 @@ class Comment extends EntityBase{
 	private $email;
 	
 	/**
+	 * @Column(type="string", length=255, nullable=false)
+	 */
+	private $name;
+	
+	/**
 	 * @Column(type="text", nullable=false)
 	 */
 	private $content = '';
+	
+	/**
+     * @ManyToOne(targetEntity="BlogEntry", inversedBy="comments")
+     * 
+     */
+	private $blogEntry;
 	
 	/**
      * Set id
@@ -31,6 +42,11 @@ class Comment extends EntityBase{
      */
     public function setId($id){
         $this->id = (int) $id;
+    }
+    
+	public function __construct(array $options = null){
+		$this->postDate = new \DateTime();
+		parent::__construct($options);
     }
 
     /**
@@ -45,21 +61,48 @@ class Comment extends EntityBase{
     /**
      * Set postedDate
      *
-     * @param datetime $postedDate
+     * @param datetime $postDate
      */
-    public function setPostedDate(DateTime $postedDate){
-        $this->postedDate = $postedDate;
+    public function setPostDate(\DateTime $postDate){
+        $this->postDate = $postDate;
     }
 
     /**
-     * Get postedDate
+     * Get postDate
      *
      * @return datetime 
      */
-    public function getPostedDate(){
-        return $this->postedDate;
+    public function getPostDate(){
+        return $this->postDate;
+    }
+    
+	public function setPostDateAsString($stringDate){
+		$stringDate = (string) $stringDate;
+		$this->postDate = new \DateTime(\GC\Util\DateHelper::convertddmmyyyyStringToMysqlDateString($stringDate));
+	}
+	
+	public function getPostDateAsString(){
+		return $this->postDate->format('d/m/Y');
+	}
+
+ 	/**
+     * Set name
+     *
+     * @param string $name
+     */
+    public function setName($name){
+        $this->name = (string) $name;
     }
 
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName(){
+        return $this->name;
+    }
+    
     /**
      * Set email
      *
@@ -95,4 +138,25 @@ class Comment extends EntityBase{
     public function getContent(){
         return $this->content;
     }
+    
+	public function setBlogEntry(BlogEntry $blogEntry){
+		$blogEntry->addComment($this);
+		$this->blogEntry = $blogEntry;
+	}
+	
+	public function getBlogEntry(){
+		return $this->blogEntry;
+	}
+	
+	public function toArray(){
+		$commentArray = array();
+		$commentArray['id'] = $this->id;
+		$commentArray['postDate'] = $this->postDateAsString;
+		$commentArray['postDateAsString'] = $this->postDateAsString;
+		$commentArray['email'] = $this->email;
+		$commentArray['name'] = $this->name;
+		$commentArray['content'] = $this->content;
+		$commentArray['blogEntryId'] = $this->blogEntry->id;
+		return $commentArray;	
+	}
 }
