@@ -60,6 +60,14 @@ class BlogController extends Zend_Controller_Action
 		}
     }
     
+	public function nextAction(){
+		$this->_helper->viewRenderer->setNoRender();
+      	$this->_helper->layout->disableLayout();
+		$offset = $this->_getParam('blogsOnPage');
+		$blogEntries = $this->_em->getRepository('GC\Entity\BlogEntry')->getRecentBlogEntries($offset, 1);
+		echo Zend_Json::encode($blogEntries[0]->toArray());
+    }
+    
     public function notfoundAction(){
     }
 

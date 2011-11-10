@@ -14,6 +14,7 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $this->view->blogEntries = $this->_em->getRepository('GC\Entity\BlogEntry')->getRecentBlogEntries(0, 3);
+    	$this->view->totalBlogs = $this->_em->getRepository('GC\Entity\BlogEntry')->total();
     }
 
 

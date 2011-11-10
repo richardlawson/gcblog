@@ -164,6 +164,12 @@ hr.alt {color: #222; background-color: #222; border: 1px solid #888; border-styl
 	width:362px;
 }
 
+#subnav{
+	width:100%;
+	float:left;
+	margin-bottom:1.5em;
+}
+
 #tab1 ul{
 	width:100%;
 	margin: 0; 
@@ -264,13 +270,13 @@ hr.alt {color: #222; background-color: #222; border: 1px solid #888; border-styl
 }
 
 #contact-form{
-	padding:5%;
-	padding-left:5%;
+	padding:18px;
 	border: 1px solid #ccc;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size:80%;
 	float:left;
-	width:90%;
+	width:324px;
+	margin-bottom:1.5em;
 	
 }
 
@@ -530,6 +536,48 @@ hr.alt {color: #222; background-color: #222; border: 1px solid #888; border-styl
 }
 
 /*--------------------------------------------------------------*/
+/* AJAX loaded blogs */
+
+#extra-blogs{
+	width:100%;
+	float:left;
+	margin-top:1.5em;
+	border-top:1px solid #ccc;
+	display:none;
+	font-size:90%;
+}
+
+#extra-blogs h1{
+	font-size:160%;
+	padding:0;
+	margin-top:0;
+}
+
+.extra-blog{
+	width:100%;
+	float:left;
+	padding-top:1em;
+	padding-bottom:1em;
+	border-bottom:1px solid #ccc;
+}
+
+#loadingBlog{
+	width:100%;
+	float:left;
+	display:none;
+	padding-top:0.5em;
+	padding-bottom:0.5em;
+	text-align:center;
+}
+
+#addBlog{
+	float:left;
+	width:100%;
+	margin-top:1.5em;	
+}
+
+
+/*--------------------------------------------------------------*/
 /* pagination */
 
 .paginationControl{
@@ -537,11 +585,11 @@ hr.alt {color: #222; background-color: #222; border: 1px solid #888; border-styl
 	font-size:80%;
 	float: left;
 	background-color:#efefef;
-	padding-left:1em;
-	padding-right:1em;
+	padding-left:2.5%;
+	padding-right:2.5%;
 	padding-top:1em;
 	padding-bottom:1em; 
-	width:100%;
+	width:95%;
 }
 
 .paginationControl a{

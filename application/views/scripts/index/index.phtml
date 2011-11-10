@@ -1,6 +1,60 @@
 <?php $this->headMeta()->appendName('keywords', 'games, code, javascript, php, jquery'); ?>
 <?php $this->headMeta()->appendName('description', 'Games and Code: features javascript games and code developed by Richard Lawson.'); ?>
 <?php $this->headTitle()->append('Games and Code - Home'); ?>
+<?php $this->headScript()->captureStart() ?>
+	$(function(){
+		var totalBlogs = 5;
+		var noBlogs = 3;
+		$('#add-blog').click(function(){
+			$('#loadingBlog').show('slow');
+			$.post(
+		    	'<?php echo $this->url(array(), 'next-blog', true)?>', 
+		    	{blogsOnPage: noBlogs},
+		    	function(data){
+			    	var blogDiv = buildBlogDivFromData(data);
+			    	$('#extra-blogs').append(blogDiv);
+			    	$('#extra-blogs').show();
+		    		$('#loadingBlog').hide();
+		    		noBlogs++;
+		    		if(noBlogs == <?php echo $this->totalBlogs ?>){
+		    			$('#addBlog').hide();
+		    		}
+		    	}
+		    	, 'json'
+		    );
+		});
+		
+		function buildBlogDivFromData(blog){
+			var blogDiv = '<div class="extra-blog">';
+			blogDiv += '<img src="/images/blog-images/' + blog.id + '/thumbnails/' + blog.image + '" alt="' + blog.title + '" style="float:left;padding-right:15px">';
+			blogDiv += '<h1>' + blog.title + '</h1>';
+			blogDiv += summaryText(blog.summary, 200);
+			blogDiv += '<br><br><a href="blog/' + blog.id + '/' + formatForUrl(blog.title) + '" class="more">READ MORE</a>';
+			blogDiv += '</div>';
+			return blogDiv;
+		}
+		
+		function summaryText(string, maxLength){
+			if(string.length > maxLength){
+				string = string.substring(0, maxLength);
+				string += '...'; 
+			}
+			return string;
+		}
+		
+		function formatForUrl(str) {
+		    return str.replace(/_/g, '-')
+		        .replace(/ /g, '-')
+		        .replace(/:/g, '-')
+		        .replace(/\\/g, '-')
+		        .replace(/\//g, '-')
+		        .replace(/[^a-zA-Z0-9\-]+/g, '')
+		        .replace(/-{2,}/g, '-')
+		        .toLowerCase();
+		};
+		
+  });
+<?php $this->headScript()->captureEnd() ?>
 <div class="slider-wrapper theme-default">
 	<div class="ribbon"></div>
     <div id="slider" class="nivoSlider">
@@ -39,4 +93,9 @@
 		<?php $i++; ?>
 	<?php endforeach ?>
 </div>
+<div id="extra-blogs"></div>
+<div id="loadingBlog">
+	<img src="/images/small-facebook.gif" alt="loading">
+</div>
+<div id="addBlog"><img src="/images/load-more.png" alt="load another blog" id="add-blog" ></div>
 

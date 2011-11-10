@@ -11,11 +11,13 @@
 	  <?php $this->headScript()->appendFile('/js/jquery/jquery.tabs.js'); ?>
 	  <?php $this->headScript()->appendFile('/js/jquery/jquery.nivo.slider.pack.js'); ?>
 	  <?php $this->headScript()->appendFile('/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9' )); ?>
-  	  <?php $this->headScript()->prependFile('/js/jquery/jquery-1.6.2.js'); ?>
+  	  <?php $this->headScript()->prependFile('/js/jquery/jquery-ui-1.8.16.custom.min.js'); ?>
+	  <?php $this->headScript()->prependFile('/js/jquery/jquery-1.6.2.js'); ?>
   <?php echo $this->headLink(); ?>
   <?php echo $this->headScript(); ?>
   <script>
   $(document).ready(function(){
+	  $("#content-right").sortable({cursor : "move"});
 	$('#slider').nivoSlider();
 	  
   	$('#search-button').click(function(){
@@ -93,6 +95,19 @@
 	  return regex.test(email);
   }
   </script>
+  <script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-8624071-2']);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	
+	</script>	
 </head>
 <body>
 	<div id="header-wrapper">
@@ -124,28 +139,29 @@
 		 		<?php echo $this->layout()->content ?>
 		 	</div>
 		 	<div id="content-right">
-		 		<ul class="tabs">
-				    <li><a href="#tab1">Blog Categories</a></li>
-				    <li><a href="#tab2">Games</a></li>
-				    <li><a href="#tab3">Calendar</a></li>
-				</ul>
-				<div class="tab_container">
-				    <div id="tab1" class="tab_content">
-				    	<?php echo $this->render('_categoryMenu.phtml');?>
-				    </div>
-				    <div id="tab2" class="tab_content">
-				        <ul class="category-menu">
-				        	<li><a href="<?php echo $this->url(array(), 'tomcatfighter', true)?>" target="_blank">F-14 Fighter</a></li>
-				    		<li><a href="http://apps.facebook.com/tomcat-fighter" target="_blank">F-14 Fighter on Facebook</a></li>
-				    	</ul>
-				    </div>
-				    <div id="tab3" class="tab_content">
-				        Coming Soon ...
-				    </div>
+		 		<div id="subnav">
+			 		<ul class="tabs">
+					    <li><a href="#tab1">Blog Categories</a></li>
+					    <li><a href="#tab2">Games</a></li>
+					    <li><a href="#tab3">Calendar</a></li>
+					</ul>
+					<div class="tab_container">
+					    <div id="tab1" class="tab_content">
+					    	<?php echo $this->render('_categoryMenu.phtml');?>
+					    </div>
+					    <div id="tab2" class="tab_content">
+					        <ul class="category-menu">
+					        	<li><a href="<?php echo $this->url(array(), 'tomcatfighter', true)?>" target="_blank">F-14 Fighter</a></li>
+					    		<li><a href="http://apps.facebook.com/tomcat-fighter" target="_blank">F-14 Fighter on Facebook</a></li>
+					    	</ul>
+					    </div>
+					    <div id="tab3" class="tab_content">
+					        Coming Soon ...
+					    </div>
+					</div>
 				</div>
-				<br class="floatfix"><br/>
-				<form action="" method="post" name="contactform" id="contactform">
 				<div id="contact-form">
+					<form action="<?php echo $this->url(array(), 'sendmessage', true)?>" method="post" name="contactform" id="contactform">
 					<div class="title">
 						CONTACT FORM:
 					</div>
@@ -188,8 +204,8 @@
 					<div class="form-label-data" id="confirmation" >
 						Your message has been sent.
 					</div>
+					</form>
 				</div>
-				</form>
 		 	</div>
 		 	<br class="floatfix">
 		</div>
